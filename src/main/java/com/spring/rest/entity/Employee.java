@@ -1,0 +1,102 @@
+package com.spring.rest.entity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+    @Entity
+    @Table(name = "employees")
+    public class Employee {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id")
+        private int id;
+
+        @Column(name = "name")
+        private String name;
+
+        @Column(name = "surname")
+        private String surname;
+
+        @Column(name = "salary")
+        private int salary;
+
+        @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        @JoinColumn(name="department_id")
+        private Department dep;
+
+        public Employee() {
+
+        }
+
+        public void init(){
+
+        }
+
+        public Employee(int id, String name, String surname, int salary) {
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.salary = salary;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSurname() {
+            return surname;
+        }
+
+        public void setSurname(String surname) {
+            this.surname = surname;
+        }
+
+        public int getSalary() {
+            return salary;
+        }
+
+        public void setSalary(int salary) {
+            this.salary = salary;
+        }
+
+        public void saveEmployee(Employee employee) {
+        }
+
+       public Department getDep() {
+           return dep;
+        }
+
+        public void setDep(Department dep) {
+            this.dep = dep;
+        }
+
+        @Override
+        public String toString() {
+           return "Employee{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", surname='" + surname + '\'' +
+                    ", salary=" + salary +
+                    ", dep=" + dep +
+                    '}';
+        }
+
+    }
+
+
+
